@@ -1,0 +1,48 @@
+﻿@model List<CRUD_Cliente2.Web.ViewModels.ClienteIndexViewModel>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h1>Lista de Clientes</h1>
+
+<form asp-action="Index" method="get" class="mb-3">
+    <input type="text" name="filtro" placeholder="Buscar por nome, CPF ou e-mail" class="form-control" />
+</form>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Novo Cliente</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ranking</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.Nome</td>
+                <td>@cliente.CPF</td>
+                <td>@cliente.Email</td>
+                <td>@cliente.Telefone</td>
+                <td>@cliente.Ranking</td>
+                <td>@(cliente.Ativo ? "Ativo" : "Inativo")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@cliente.Id">Detalhes</a> |
+                    <a asp-action="Edit" asp-route-id="@cliente.Id">Editar</a> |
+                    <a asp-action="AlterarSenha" asp-route-id="@cliente.Id">Alterar Senha</a> |
+                    <form asp-action="Inativar" asp-route-id="@cliente.Id" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-link">Inativar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

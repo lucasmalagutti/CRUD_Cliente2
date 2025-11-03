@@ -1,0 +1,81 @@
+﻿@model CRUD_Cliente2.Web.ViewModels.ClienteDetailsViewModel
+
+@{
+    ViewData["Title"] = "Detalhes do Cliente";
+}
+
+<h1>Detalhes do Cliente</h1>
+
+<dl class="row">
+    <dt class="col-sm-2">Nome</dt>
+    <dd class="col-sm-10">@Model.Nome</dd>
+
+    <dt class="col-sm-2">CPF</dt>
+    <dd class="col-sm-10">@Model.CPF</dd>
+
+    <dt class="col-sm-2">Email</dt>
+    <dd class="col-sm-10">@Model.Email</dd>
+
+    <dt class="col-sm-2">Gênero</dt>
+    <dd class="col-sm-10">@Model.Genero</dd>
+
+    <dt class="col-sm-2">Telefone</dt>
+    <dd class="col-sm-10">@Model.Telefone</dd>
+
+    <dt class="col-sm-2">Ranking</dt>
+    <dd class="col-sm-10">@Model.Ranking</dd>
+
+    <dt class="col-sm-2">Status</dt>
+    <dd class="col-sm-10">@(Model.Ativo ? "Ativo" : "Inativo")</dd>
+
+    <a asp-controller="Cliente" asp-action="AdicionarEndereco" asp-route-clienteId="@Model.Id" class="btn btn-primary">
+        + Adicionar Endereço
+    </a>
+    <a asp-controller="Cliente" asp-action="AdicionarCartao" asp-route-clienteId="@Model.Id" class="btn btn-primary">
+        + Adicionar Cartão
+    </a>
+
+    @if (Model.Enderecos != null && Model.Enderecos.Any())
+    {
+        <div>
+            <h4>Endereços de Entrega</h4>
+            <ul class="list-group">
+                @foreach (var e in Model.Enderecos)
+                {
+                    <li class="list-group-item">
+                        <strong>@e.NomeIdentificador</strong><br />
+                        @e.TipoLogradouro @e.Logradouro, Nº @e.Numero – @e.Bairro – @e.CEP<br />
+                        @e.Cidade?.Nome – @e.Cidade?.Estado?.Nome / @e.Cidade?.Estado?.Pais?.Nome
+                        @if (!string.IsNullOrWhiteSpace(e.Observacoes))
+                        {
+                            <div><em>Obs:</em> @e.Observacoes</div>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
+
+    @if (Model.Cartoes != null && Model.Cartoes.Any())
+    {
+        <div>
+            <h4>Cartões de Crédito</h4>
+            <ul class="list-group">
+                @foreach (var c in Model.Cartoes)
+                {
+                    <li class="list-group-item">
+                        <strong>Número:</strong> **** **** **** @c.NumeroCartao[^4..] <br />
+                        <strong>Nome Impresso:</strong> @c.NomeImpresso <br />
+                        <strong>Bandeira:</strong> @c.Bandeira <br />
+                        <strong>Preferencial:</strong> @(c.Preferencial ? "Sim" : "Não")
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Voltar</a>

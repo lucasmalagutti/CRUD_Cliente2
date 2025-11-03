@@ -1,0 +1,16 @@
+﻿@model CRUD_Cliente2.Web.ViewModels.EnderecoViewModel
+
+@{
+    ViewData["Title"] = "Novo Endereço";
+}
+
+<h2>Novo Endereço</h2>
+
+<form asp-action="AdicionarEndereco" method="post">
+    @Html.HiddenFor(m => m.ClienteId)
+
+    @Html.EditorFor(m => m)
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a asp-action="Details" asp-controller="Cliente" asp-route-id="@Model.ClienteId" class="btn btn-secondary">Cancelar</a>
+</form>

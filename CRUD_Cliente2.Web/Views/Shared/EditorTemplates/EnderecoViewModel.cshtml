@@ -1,0 +1,74 @@
+﻿@model CRUD_Cliente2.Web.ViewModels.EnderecoViewModel
+<fieldset>
+<div class="form-group">
+    <label asp-for="TipoResidencia"></label>
+    <input asp-for="TipoResidencia" class="form-control" />
+    <span asp-validation-for="TipoResidencia" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="TipoLogradouro"></label>
+    <input asp-for="TipoLogradouro" class="form-control" />
+    <span asp-validation-for="TipoLogradouro" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Logradouro"></label>
+    <input asp-for="Logradouro" class="form-control" />
+    <span asp-validation-for="Logradouro" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Numero"></label>
+    <input asp-for="Numero" class="form-control" />
+    <span asp-validation-for="Numero" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Bairro"></label>
+    <input asp-for="Bairro" class="form-control" />
+    <span asp-validation-for="Bairro" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="CEP"></label>
+    <input asp-for="CEP" class="form-control" maxlength="8" />
+    <span asp-validation-for="CEP" class="text-danger"></span>
+</div>
+
+    <div class="form-group">
+        <label asp-for="PaisSelecionado"></label>
+        <select asp-for="PaisSelecionado" asp-items="Model.Paises" class="form-control">
+            <option value="">Selecione o país</option>
+        </select>
+        <span asp-validation-for="PaisSelecionado" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EstadoSelecionado"></label>
+        <select asp-for="EstadoSelecionado" asp-items="Model.Estados" class="form-control">
+            <option value="">Selecione o estado</option>
+        </select>
+        <span asp-validation-for="EstadoSelecionado" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CidadeSelecionada"></label>
+        <select asp-for="CidadeSelecionada" asp-items="Model.Cidades" class="form-control">
+            <option value="">Selecione a cidade</option>
+        </select>
+        <span asp-validation-for="CidadeSelecionada" class="text-danger"></span>
+    </div>
+
+<div class="form-group">
+    <label asp-for="NomeIdentificador"></label>
+    <input asp-for="NomeIdentificador" class="form-control" />
+    <span asp-validation-for="NomeIdentificador" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Observacoes"></label>
+    <textarea asp-for="Observacoes" class="form-control"></textarea>
+    <span asp-validation-for="Observacoes" class="text-danger"></span>
+</div>
+</fieldset>
